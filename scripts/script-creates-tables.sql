@@ -30,7 +30,7 @@ create table sucursal (
 	id varchar(10) not null,
     nombre_sucursal varchar(45) not null,
     ciudad_sucursal varchar(45) not null,
-    activo int null,
+    activo varchar(15) null,
     primary key (id));
     
 -- ----------------------------
@@ -39,7 +39,7 @@ create table sucursal (
 
 create table prestamo (
 	numero_prestamo varchar(10) not null,
-    importe int not null,
+    importe varchar(10) not null,
     id_cliente varchar(10) not null,
     sucursal_id varchar(10) not null,
     primary key(numero_prestamo),
@@ -53,7 +53,7 @@ create table prestamo (
 create table pago (
 	numero_pago varchar(10) not null,
     fecha_pago varchar(45) not null,
-    importe_pagado int not null,
+    importe_pagado varchar(10) not null,
     Prestamo_numero_prestamo varchar(10) not null,
     primary key (numero_pago, Prestamo_numero_prestamo),
     foreign key (Prestamo_numero_prestamo) references prestamo (numero_prestamo));
@@ -64,7 +64,7 @@ create table pago (
 
 create table Cuenta (
 	numero_cuenta varchar(10) not null,
-    saldo int not null,
+    saldo varchar(10) not null,
     fecha_acceso varchar(45) null,
     Cliente_id_cliente varchar(10) not null,
     primary key (numero_cuenta),
@@ -76,7 +76,7 @@ create table Cuenta (
 
 create table cuenta_corriente (
 	id varchar(10) not null,
-    descubierto int not null,
+    descubierto varchar(10) not null,
     Cuenta_numero_cuenta varchar(10) not null,
     primary key (id),
     foreign key (Cuenta_numero_cuenta) references Cuenta (numero_cuenta));
@@ -87,7 +87,7 @@ create table cuenta_corriente (
 
 create table cuenta_ahorro (
 	id varchar(10) not null,
-    tipo_interes int not null,
+    tipo_interes varchar(5) not null,
     Cuenta_id_cuenta varchar(10),
     primary key (id),
     foreign key (Cuenta_id_cuenta) references Cuenta (numero_cuenta));
